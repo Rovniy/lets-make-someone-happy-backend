@@ -36,4 +36,5 @@ jobs:
           # Port number of the server.
           port: secrets.PORT
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          password: secrets.PASSWORD
+          privateKey: secrets.PRIVATE_KEY
+          passphrase: secrets.PASSPHRASE
