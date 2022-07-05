@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+require('dotenv').config()
 const app = require('../app')
 const debug = require('debug')('lets-make-someone-happy-backend:server')
 const http = require('http')
