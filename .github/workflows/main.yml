@@ -30,11 +30,11 @@ jobs:
           # Path on the remote server to copy to.
           remote: ~/www/
           # Hostname or IP address of the server.
-          host: secrets.HOST
+          host: ${{ secrets.HOST }}
           # Username for authentication.
-          username: secrets.USER
+          username: ${{ secrets.USER }}
           # Port number of the server.
-          port: secrets.PORT
+          port: ${{ secrets.PORT }}
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          privateKey: secrets.PRIVATE_KEY
-          passphrase: secrets.PASSPHRASE
+          privateKey: ${{ secrets.PRIVATE_KEY }}
+          passphrase: ${{ secrets.PRIVATE_KEY }}
