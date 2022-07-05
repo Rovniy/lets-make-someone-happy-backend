@@ -36,4 +36,4 @@ jobs:
           # Port number of the server.
           port: env.PORT
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          privateKey: env.PRIVATE_KEY
+          password: env.PASSWORD
