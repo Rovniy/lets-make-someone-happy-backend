@@ -1,0 +1,16 @@
+docker-compose.*.yml
+.vscode/
+.git/
+.idea/
+docker/
+node_modules/
+*.md
+*.example
+Dockerfile*
+.gitignore
+*.log
+traefik/
+public/
+.eslintrc.js
+npm-debug
+jenkins/
