@@ -30,10 +30,10 @@ jobs:
           # Path on the remote server to copy to.
           remote: ~/www/
           # Hostname or IP address of the server.
-          host: env.HOST
+          host: $HOST
           # Username for authentication.
-          username: env.USER
+          username: $USER
           # Port number of the server.
-          port: env.PORT
+          port: $PORT
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          password: env.PASSWORD
+          password: $PASSWORD
