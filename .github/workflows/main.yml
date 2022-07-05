@@ -68,11 +68,11 @@ jobs:
           # ssh remote user
           user: "lcsl"
           # content of ssh private key. ex raw content of ~/.ssh/id_rsa
-          key: ${{ env.private_key }}
+          key: $private_key
           # ssh remote password
-          pass: ${{ env.passphrase }}
+          pass: $passphrase
           # connection timeout to remote host
           script: |
             cd ~/www
-            docker pull ${{ env.docker_image }}:main
-            docker run ${{ env.docker_image }}:main
+            docker pull $docker_image:main
+            docker run $docker_image:main
