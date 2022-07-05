@@ -37,7 +37,3 @@ jobs:
           port: env.PORT
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
           privateKey: env.PRIVATE_KEY
-          # Password for password-based user authentication.
-          password: env.PASSWORD
-          # For an encrypted private key, this is the passphrase used to decrypt it.
-          passphrase: env.PASSPHRASE
