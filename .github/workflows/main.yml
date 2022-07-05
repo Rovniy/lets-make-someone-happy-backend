@@ -57,7 +57,7 @@ jobs:
           username: ${{ env.LCSL_USERNAME }}
           key: ${{ env.LCSL_PRIVATE_KEY }}
           passphrase: ${{ env.LCSL_PASSPHRASE }}
-          port: ${{ env.PORT }}
+          port: ${{ env.LCSL_PORT }}
           script: |
             cd ~/www
             docker pull ${{ env.LCSL_DOCKER_IMAGE }}:main
