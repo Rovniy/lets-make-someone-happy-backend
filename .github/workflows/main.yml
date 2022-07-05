@@ -7,6 +7,9 @@
 
 name: Publish Docker image
 
+permissions:
+  contents: read
+  
 on:
   push:
     branches: ['main']
@@ -69,11 +72,11 @@ jobs:
           # ssh remote user
           user: "lcsl"
           # content of ssh private key. ex raw content of ~/.ssh/id_rsa
-          key: ${{ $LCSL_PRIVATE_KEY }}
+          key: ${{ env.LCSL_PRIVATE_KEY }}
           # ssh remote password
-          pass: ${{ $LCSL_PASSPHRASE }}
+          pass: ${{ env.LCSL_PASSPHRASE }}
           # connection timeout to remote host
           script: |
             cd ~/www
-            docker pull ${{ $LCSL_DOCKER_IMAGE }}:main
-            docker run ${{ $LCSL_DOCKER_IMAGE }}:main
+            docker pull ${{ env.LCSL_DOCKER_IMAGE }}:main
+            docker run ${{ env.LCSL_DOCKER_IMAGE }}:main
