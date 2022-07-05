@@ -30,10 +30,10 @@ jobs:
           # Path on the remote server to copy to.
           remote: ~/www/
           # Hostname or IP address of the server.
-          host: $HOST
+          host: secrets.HOST
           # Username for authentication.
-          username: $USER
+          username: secrets.USER
           # Port number of the server.
-          port: $PORT
+          port: secrets.PORT
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          password: $PASSWORD
+          password: secrets.PASSWORD
