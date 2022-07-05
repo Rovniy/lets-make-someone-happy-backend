@@ -22,11 +22,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: executing remote ssh commands using ssh key
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USER }}
-            key: ${{ secrets.PRIVATE_KEY }}
-            port: ${{ secrets.PORT }}
-            script: whoami
+    - uses: actions/checkout@v2
+
+    - name: Synchronize Git repository to uberspace
+      uses: AEnterprise/rsync-deploy@v1.0
+      env:
+        DEPLOY_KEY: ${{ secrets.PRIVATE_KEY }}
+        ARGS: "-e -c -r --delete"
+        SERVER_PORT: ${{ secrets.PORT }}
+        FOLDER: "./"
+        SERVER_IP: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USER }}
+        SERVER_DESTINATION: ${{ secrets.REMOTE_TARGET }}
