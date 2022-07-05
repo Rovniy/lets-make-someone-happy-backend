@@ -11,6 +11,11 @@ on:
   push:
     branches: ['main']
 
+env: # Or as an environment variable
+  private_key: ${{ secrets.PRIVATE_KEY }}
+  passphrase: ${{ secrets.PASSPHRASE }}
+  docker_image: ${{ secrets.DOCKER_IMAGE }}
+  
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -64,11 +69,11 @@ jobs:
           # ssh remote user
           user: "lcsl"
           # content of ssh private key. ex raw content of ~/.ssh/id_rsa
-          key: ${{ secrets.PRIVATE_KEY }}
+          key: ${{ env.private_key }}
           # ssh remote password
-          pass: ${{ secrets.PASSPHRASE }}
+          pass: ${{ env.passphrase }}
           # connection timeout to remote host
           script: |
             cd ~/www
-            docker pull ${{ secrets.DOCKER_IMAGE }}:main
-            docker run ${{ secrets.DOCKER_IMAGE }}:main
+            docker pull ${{ env.docker_image }}:main
+            docker run ${{ env.docker_image }}:main
