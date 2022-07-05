@@ -20,11 +20,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Log in to the Container registry
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: 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
+          password: c2974c3ba89c91695c85b3c308b15436df858cd9
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
