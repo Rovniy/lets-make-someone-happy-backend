@@ -22,19 +22,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Copy via ssh
-        uses: garygrossgarten/github-action-scp@v0.7.3
-        with:
-          # Path to the local folder you want to copy.
-          local: /
-          # Path on the remote server to copy to.
-          remote: ~/www/
-          # Hostname or IP address of the server.
-          host: ${{ secrets.HOST }}
-          # Username for authentication.
-          username: ${{ secrets.USER }}
-          # Port number of the server.
-          port: ${{ secrets.PORT }}
-          # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          privateKey: ${{ secrets.PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          SOURCE: "/"
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
