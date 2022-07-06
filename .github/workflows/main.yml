@@ -19,6 +19,7 @@ jobs:
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       DOCKER_IMAGE: ${{secrets.DOCKER_IMAGE}}
+      DOCKER_PORT: 3000
       HOST: ${{secrets.HOST}}
       PORT: ${{secrets.PORT}}
       SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
@@ -53,10 +54,10 @@ jobs:
         with:
           command: |
             cd ~/www
-            docker pull xploitravy/lcsl:main
-            docker stop lcsl
-            docker rm -f lcsl
-            docker run --name lcsl -p 3000:3000 -d xploitravy/lcsl:main
+            docker pull ${{ env.DOCKER_IMAGE }}:main
+            docker stop ${{ env.SSH_USERNAME }}
+            docker rm -f ${{ env.SSH_USERNAME }}
+            docker run --user $(id -u) --name ${{ env.SSH_USERNAME }} -p ${{ env.DOCKER_PORT }}:${{ env.DOCKER_PORT }} -d ${{ env.DOCKER_IMAGE }}:main
           host: ${{ env.HOST }}
           username: ${{ env.SSH_USERNAME }}
           port: ${{ env.PORT }}
