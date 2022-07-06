@@ -48,13 +48,14 @@ jobs:
 #          tags: ${{ steps.meta.outputs.tags }}
 #          labels: ${{ steps.meta.outputs.labels }}
 #          
-      - name: SSH Execute Commands
-        uses: JimCronqvist/action-ssh@0.1.1
+          
+      - name: SSH Command
+        uses: D3rHase/ssh-command-action@v0.2.1
         with:
-          command: |
+          HOST: ${{ env.HOST }}
+          PORT: ${{ env.PORT }}
+          USER: ${{ env.SSH_USERNAME }}
+          PRIVATE_SSH_KEY: ${{ env.SSH_PRIVATE_KEY }}
+          COMMAND: |
             cd ~
             ls -ll
-          hosts: ${{ env.HOST }}
-          port: ${{ env.PORT }}
-          privateKey: ${{ env.SSH_PRIVATE_KEY }}
-          debug: true
