@@ -1,2 +1,5 @@
 # lets-make-someone-happy-backend
 A website that will allow you to help turn someone's life around!
+
+# Environment
+https://dev.to/arnu515/deploy-your-nodejs-app-to-a-server-with-docker-1hcd
