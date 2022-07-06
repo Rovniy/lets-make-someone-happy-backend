@@ -49,13 +49,25 @@ jobs:
 #          labels: ${{ steps.meta.outputs.labels }}
 #          
           
-      - name: SSH Command
-        uses: D3rHase/ssh-command-action@v0.2.1
+#      - name: SSH Command
+#        uses: D3rHase/ssh-command-action@v0.2.1
+#        with:
+#          HOST: ${{ env.HOST }}
+#          PORT: ${{ env.PORT }}
+#          USER: ${{ env.SSH_USERNAME }}
+#          PRIVATE_SSH_KEY: ${{ env.SSH_PRIVATE_KEY }}
+#          COMMAND: |
+#            cd ~
+#            ls -ll
+            
+      - name: Run SSH command
+        uses: garygrossgarten/github-action-ssh@v0.6.3
         with:
-          HOST: ${{ env.HOST }}
-          PORT: ${{ env.PORT }}
-          USER: ${{ env.SSH_USERNAME }}
-          PRIVATE_SSH_KEY: ${{ env.SSH_PRIVATE_KEY }}
-          COMMAND: |
+          command: |
             cd ~
             ls -ll
+          host: ${{ env.HOST }}
+          username: ${{ env.SSH_USERNAME }}
+          port: ${{ env.PORT }}
+          privateKey: ${{ env.SSH_PRIVATE_KEY }}
+          passphrase: ${{ env.SSH_PASSPHRASE }}
