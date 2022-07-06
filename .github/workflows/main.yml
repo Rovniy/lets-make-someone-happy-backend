@@ -19,29 +19,42 @@ jobs:
       DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
       DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       DOCKER_IMAGE: ${{secrets.DOCKER_IMAGE}}
+      HOST: ${{secrets.HOST}}
+      PORT: ${{secrets.PORT}}
+      SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
+      SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+      SSH_USERNAME: ${{secrets.SSH_USERNAME}}
     steps:
-      - name: echo env
-        run: echo "${{ env.DOCKER_USERNAME }} ${{ env.DOCKER_PASSWORD }} ${{ env.DOCKER_IMAGE }}"
-        
-      - name: Check out the repo
-        uses: actions/checkout@v3
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+#      - name: Check out the repo
+#        uses: actions/checkout@v3
+#
+#      - name: Log in to Docker Hub
+#        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+#        with:
+#          username: ${{ env.DOCKER_USERNAME }}
+#          password: ${{ env.DOCKER_PASSWORD }}
+#
+#      - name: Extract metadata (tags, labels) for Docker
+#        id: meta
+#        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+#        with:
+#          images: ${{ env.DOCKER_IMAGE }}
+#
+#      - name: Build and push Docker image
+#        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+#        with:
+#          context: .
+#          push: true
+#          tags: ${{ steps.meta.outputs.tags }}
+#          labels: ${{ steps.meta.outputs.labels }}
+#          
+      - name: SSH Execute Commands
+        uses: JimCronqvist/action-ssh@0.1.1
         with:
-          username: ${{ env.DOCKER_USERNAME }}
-          password: ${{ env.DOCKER_PASSWORD }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-        with:
-          images: ${{ env.DOCKER_IMAGE }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          command: |
+            cd ~
+            ls -ll
+          hosts: ${{ env.HOST }}
+          port: ${{ env.PORT }}
+          privateKey: ${{ env.SSH_PRIVATE_KEY }}
+          debug: true
