@@ -54,7 +54,7 @@ jobs:
           command: |
             cd ~/www
             docker pull ${{ env.DOCKER_IMAGE }}
-            docker stop ${{ env.DOCKER_IMAGE }]
+            docker stop ${{ env.DOCKER_IMAGE }}
             docker start ${{ env.DOCKER_IMAGE }}
           host: ${{ env.HOST }}
           username: ${{ env.SSH_USERNAME }}
