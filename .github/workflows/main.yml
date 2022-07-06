@@ -24,6 +24,9 @@ jobs:
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DOCKER_IMAGE: ${{ secrets.DOCKER_IMAGE }}
     steps:
+      - name: echo trigger
+        run: echo "${{ env }}"
+        
       - name: Check out the repo
         uses: actions/checkout@v3
 
