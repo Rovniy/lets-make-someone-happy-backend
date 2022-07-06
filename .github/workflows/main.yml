@@ -24,7 +24,7 @@ jobs:
         run: echo "${{ env }}"
         
       - name: echo secrets
-          run: echo "${{ secrets }}"
+        run: echo "${{ secrets }}"
         
       - name: Check out the repo
         uses: actions/checkout@v3
