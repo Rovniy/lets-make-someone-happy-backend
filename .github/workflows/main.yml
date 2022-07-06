@@ -12,7 +12,7 @@ permissions:
   
 on:
   push:
-    branches: ['main']
+    branches: ['release']
     
 env: # Or as an environment variable
   LCSL_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
