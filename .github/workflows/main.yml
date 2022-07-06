@@ -53,9 +53,10 @@ jobs:
         with:
           command: |
             cd ~/www
-            docker pull ${{ env.DOCKER_IMAGE }}
-            docker stop ${{ env.DOCKER_IMAGE }}
-            docker start ${{ env.DOCKER_IMAGE }}
+            docker pull xploitravy/lcsl:main
+            docker stop xploitravy/lcsl:main
+            docker rm -f xploitravy/lcsl:main
+            docker run --name xploitravy/lcsl:main -p 3000:3000 -d xploitravy/lcsl:main
           host: ${{ env.HOST }}
           username: ${{ env.SSH_USERNAME }}
           port: ${{ env.PORT }}
