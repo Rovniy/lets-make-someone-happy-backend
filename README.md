@@ -16,6 +16,11 @@ sudo systemctl restart nginx
 sudo certbot --nginx -d letschangesomeonelife.com -d www.letschangesomeonelife.com
 ```
 
+# Database
+```text
+docker run --name postgres -p 5432:5432 -e POSTGRES_USER=XXXXXXX -e POSTGRES_PASSWORD=XXXXXXX -e POSTGRES_DB=XXXXXXX -d postgres:14.4
+```
+
 # Build
 ```
 git pull origin main
