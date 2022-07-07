@@ -8,10 +8,13 @@ https://api.letschangesomeonelife.com/
 - Docker env: https://dev.to/arnu515/deploy-your-nodejs-app-to-a-server-with-docker-1hcd
 - Certbot: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04 
 
-sudo cp /etc/nginx/sites-available/api.letschangesomeonelife.com /etc/nginx/sites-enabled
+
+```text
 sudo cp /etc/nginx/sites-available/letschangesomeonelife.com /etc/nginx/sites-enabled
 sudo nginx -t
 sudo systemctl restart nginx
+sudo certbot --nginx -d letschangesomeonelife.com -d www.letschangesomeonelife.com
+```
 
 # Build
 ```
