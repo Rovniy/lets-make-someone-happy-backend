@@ -1,13 +1,12 @@
 const { faker } = require('@faker-js/faker')
 const { tables: { Duration, Transaction, Winner }, enumTypes } = require('#root/db/constants/index')
-const types = require('#types')
 const { seeds_cycles } = require('#constants')
-const { getRandomBetween, getRandomElementOfArray } = require('#helpers')
+const { getRandomElementOfArray } = require('#helpers')
 
 const createFakeDuration = (index, seed_uuid) => ({
 	id: seed_uuid,
 	start_at: faker.date.past(),
-	end_at: faker.date.past(),
+	end_at: faker.date.future(),
 	status: getRandomElementOfArray(enumTypes.durationStatusType),
 	payload: {
 		seed_iterator: index

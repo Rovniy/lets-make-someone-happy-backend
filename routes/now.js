@@ -1,18 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const { Duration, Transaction } = require('#db')
 const types = require('#types')
+const moment = require('moment')
 const createError = require('http-errors')
+const { Duration, Transaction } = require('#db')
+const { initial_value } = require('#constants')
 
 router.get('/', async (req, res, next) => {
 	try {
 		const current_duration = await getDuration()
 		const current_pool = await getCurrentTransactionsPool(current_duration)
+		const money_pool = current_pool.reduce((acc, value) => acc + value?.sum, 0)
+		const users_count = current_pool.length
+		const time_remaining = calculateDateDiff(current_duration)
+		const current_timestamp = Date.now()
 
 		res.send({
-
-			current_duration,
-			current_pool
+			current_timestamp,
+			money_pool,
+			users_count,
+			initial_value,
+			time_remaining
 		})
 	} catch (e) {
 		next(createError('Cant get current duration', 500, e))
@@ -24,15 +32,26 @@ const getDuration = () => {
 		.findOne({
 			status: types.duration.status.in_progress
 		})
+		.returning([
+			'end_at'
+		])
 		.orderBy('start_at', 'asc')
 }
 
 const getCurrentTransactionsPool = current_duration => {
 	return Transaction.query()
-		.sum('sum as sum')
+		.select('*')
 		.where({
-			duration_id: current_duration.id
+			duration_id: current_duration.id,
+			status: types.transaction.status.completed
 		})
+}
+
+const calculateDateDiff = current_duration => {
+	const date_now = moment()
+	const date_final = moment(current_duration?.end_at)
+
+	return date_final.diff(date_now, 'seconds')
 }
 
 module.exports = router

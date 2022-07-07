@@ -43,7 +43,7 @@ return {
     "money_pool": Number, // Количество собранных средств
     "users_count": Number, // Количество участников в текущем пуле
     "initial_value": Number, // Начальное значение суммы взноса
-    "time_remaining": Number, // Оставшееся время
+    "time_remaining": Number, // Оставшееся время в секундах
 }
 ```
 ---
