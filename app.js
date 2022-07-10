@@ -1,6 +1,6 @@
 const createError = require('http-errors')
 const express = require('express')
-const path = require('path')
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const indexRouter = require('./routes/index')
@@ -8,13 +8,19 @@ const nowRouter = require('./routes/now')
 
 const app = express()
 
+const corsOptions = {
+	origin: process.env.CORS_ORIGIN,
+	optionsSuccessStatus: 200
+}
+
 app.use(logger('dev'))
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/now', nowRouter)
-app.use('/', indexRouter)
+app.use('/now', cors(corsOptions), nowRouter)
+app.use('/', cors(corsOptions), indexRouter)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(createError(404)))
