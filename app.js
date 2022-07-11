@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const indexRouter = require('./routes/index')
 const nowRouter = require('./routes/now')
+const donateRouter = require('./routes/donate')
 
 const app = express()
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
 app.use('/now', cors(corsOptions), nowRouter)
+app.use('/donate', cors(corsOptions), donateRouter)
 app.use('/', cors(corsOptions), indexRouter)
 
 // catch 404 and forward to error handler
