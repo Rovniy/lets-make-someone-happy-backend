@@ -20,6 +20,11 @@ jobs:
       SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
       SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
       SSH_USERNAME: ${{secrets.SSH_USERNAME}}
+      POSTGRES_HOST: ${{secrets.POSTGRES_HOST}}
+      POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+      POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+      POSTGRES_NAME: ${{secrets.POSTGRES_NAME}}
+      CORS_ORIGIN: ${{secrets.CORS_ORIGIN}}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3

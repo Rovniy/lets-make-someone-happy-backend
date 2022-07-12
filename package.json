@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "docker-build": "docker build -t lcsl .",
-    "docker-pg": "docker run --name lcsl-pg -p 5433:5432 -e POSTGRES_USER=local -e POSTGRES_PASSWORD=local -e POSTGRES_DB=local -d postgres:14.4",
-    "docker-start": "docker run --name lcsl -p 3000:3000 -d lcsl",
+    "docker-pg": "docker run --name lcsl-pg -p 5432:5432 -e POSTGRES_USER=local -e POSTGRES_PASSWORD=local -e POSTGRES_DB=local --network lcslnetwork -d postgres:14.4",
+    "docker-start": "docker run --name lcsl -p 3000:3000 -d lcsl --network lcslnetwork",
     "docker-stop": "docker stop lcsl && docker rm -f lcsl || exit 0;",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lint:fix": "eslint --ext .js --fix --ignore-path .gitignore .",
