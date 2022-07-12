@@ -39,3 +39,5 @@ app.use(async function(err, req, res) {
 })
 
 module.exports = app
+
+console.log('App ready')
