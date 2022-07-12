@@ -18,7 +18,7 @@ sudo certbot --nginx -d letschangesomeonelife.com -d www.letschangesomeonelife.c
 
 # Database
 ```text
-docker run --name pg -p 5432:5432 -e POSTGRES_USER=local -e POSTGRES_PASSWORD=local -e POSTGRES_DB=local -d postgres:14.4
+docker run --name pg -p 5432:5433 -e POSTGRES_USER=local -e POSTGRES_PASSWORD=local -e POSTGRES_PORT=5433 -e PORT=5433 -e POSTGRES_DB=local -d postgres:14.4
 ```
 
 # Build
