@@ -54,7 +54,7 @@ jobs:
             docker pull ${{ env.DOCKER_IMAGE }}:main
             docker stop ${{ env.SSH_USERNAME }}
             docker rm -f ${{ env.SSH_USERNAME }}
-            docker run --user $(id -u) --name ${{ env.SSH_USERNAME }} -p ${{ env.DOCKER_PORT }}:${{ env.DOCKER_PORT }} -e POSTGRES_USER=${{ env.POSTGRES_USER }} -e POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} -e POSTGRES_DB=${{ env.POSTGRES_DB }} -e POSTGRES_PORT=${{ env.POSTGRES_PORT }} -d ${{ env.DOCKER_IMAGE }}:main
+            docker run --user $(id -u) --name ${{ env.SSH_USERNAME }} -p ${{ env.DOCKER_PORT }}:${{ env.DOCKER_PORT }} -e POSTGRES_USER=${{ env.POSTGRES_USER }} -e POSTGRES_HOST=${{ env.POSTGRES_HOST }} -e POSTGRES_NAME=${{ env.POSTGRES_NAME }} -e POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} -e POSTGRES_DB=${{ env.POSTGRES_DB }} -e POSTGRES_PORT=${{ env.POSTGRES_PORT }} -d ${{ env.DOCKER_IMAGE }}:main
           host: ${{ env.HOST }}
           username: ${{ env.SSH_USERNAME }}
           port: ${{ env.PORT }}
