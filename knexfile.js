@@ -9,7 +9,6 @@ const CONNECTION_OBJECT = {
 	password: env.POSTGRES_PASSWORD
 }
 
-
 module.exports = {
 	client: 'pg',
 	connection: (env.NODE_ENV === 'development') ? CONNECTION_OBJECT : CONNECTION_STRING,
