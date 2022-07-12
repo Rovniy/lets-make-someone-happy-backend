@@ -24,6 +24,7 @@ jobs:
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       POSTGRES_NAME: ${{ secrets.POSTGRES_NAME }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
       CORS_ORIGIN: ${{ secrets.CORS_ORIGIN }}
     steps:
       - name: Check out the repo
@@ -53,7 +54,7 @@ jobs:
             docker pull ${{ env.DOCKER_IMAGE }}:main
             docker stop ${{ env.SSH_USERNAME }}
             docker rm -f ${{ env.SSH_USERNAME }}
-            docker run --user $(id -u) --name ${{ env.SSH_USERNAME }} -p ${{ env.DOCKER_PORT }}:${{ env.DOCKER_PORT }} -e POSTGRES_USER=${{ env.POSTGRES_USER }} -e POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} -e POSTGRES_DB=${{ env.POSTGRES_DB }} -d ${{ env.DOCKER_IMAGE }}:main
+            docker run --user $(id -u) --name ${{ env.SSH_USERNAME }} -p ${{ env.DOCKER_PORT }}:${{ env.DOCKER_PORT }} -e POSTGRES_USER=${{ env.POSTGRES_USER }} -e POSTGRES_PASSWORD=${{ env.POSTGRES_PASSWORD }} -e POSTGRES_DB=${{ env.POSTGRES_DB }} -e POSTGRES_PORT=${{ env.POSTGRES_PORT }} -d ${{ env.DOCKER_IMAGE }}:main
           host: ${{ env.HOST }}
           username: ${{ env.SSH_USERNAME }}
           port: ${{ env.PORT }}

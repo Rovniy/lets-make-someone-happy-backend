@@ -16,6 +16,8 @@ if (isDevelopment) {
 	CONNECTION = `postgres://${env.POSTGRES_USER}:${env.POSTGRES_PASSWORD}@${env.POSTGRES_HOST}:${env.POSTGRES_PORT}/${env.POSTGRES_NAME}`
 }
 
+console.log('CONNECTION', CONNECTION)
+
 const knex = Knex({
 	client: 'pg',
 	connection: CONNECTION,
