@@ -4,7 +4,7 @@ const types = require('#types')
 const moment = require('moment')
 const createError = require('http-errors')
 const { Duration, Transaction } = require('#db')
-const { initial_value } = require('#constants')
+const { initial_value, base_commission } = require('#constants')
 
 router.get('/', async (req, res, next) => {
 	try {
@@ -23,6 +23,7 @@ router.get('/', async (req, res, next) => {
 			money_pool,
 			users_count,
 			initial_value,
+			base_commission,
 			time_remaining,
 			target_date
 		})
